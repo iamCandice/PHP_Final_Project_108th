@@ -16,6 +16,13 @@ class Article_model extends CI_Model
         }
     }
 
+    public function insert_tag($article_id, $tags) {
+        $this->db->query("DELETE FROM article_tags WHERE article_id = " . $article_id);
+        foreach ($tags as $tag) {
+            $this->db->insert("article_tags", array("article_id" => $article_id, "tag_id" => $tag));
+        }
+    }
+
     public function getALL()
     {
         $query = $this->db->get('articles');

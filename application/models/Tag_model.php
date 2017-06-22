@@ -6,7 +6,7 @@ class Tag_model extends CI_Model
     {
         parent::__construct();
     }
-    public function insert($tag_id=null, $tag_id=null)
+    /*public function insert($tag_id=null, $tag_id=null)
     {
         if (empty($tag_id) || empty($tag_id)) {
             return false;
@@ -19,7 +19,14 @@ class Tag_model extends CI_Model
         } else {
             return false;
         }
+    }*/
+
+    public function get_all() {
+        return $this->db->query("select * from tags")->result();
     }
 
+    public function get_tags($article_id) {
+        return $this->db->query("select * from article_tags where article_id = ". $article_id)->result();
+    }
 }
     

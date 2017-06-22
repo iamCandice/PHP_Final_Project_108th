@@ -1,6 +1,8 @@
 <?php
 class Articles extends CI_Controller
 {
+    private $tags;
+
     public function __construct()
     {
         parent::__construct();
@@ -10,6 +12,16 @@ class Articles extends CI_Controller
         $this->load->model('like_model');
         $this->load->helper('form');
         $this->load->library('form_validation');
+
+        $this->load->model("tag_model");
+
+        $data = $this->tag_model->get_all();
+        $this->tags = [];
+
+        foreach ($data as $row) {
+            $this->tags[$row->id] = $row->name;
+        }
+
     }
     public function index()
     {
@@ -43,6 +55,13 @@ class Articles extends CI_Controller
             }
             $data['users'] = $this->user_model->find_by_ids($user_ids);
         }
+        
+        $data['tags'] = $this->tags;
+        $article_tags = $this->tag_model->get_tags($id);
+        $data['article_tag'] = [];
+        foreach ($article_tags as $tag) {
+            $data['article_tag'][] = $tag->tag_id;
+        }
         $this->load->view('templates/header');
         $this->load->view('articles/show', $data);
         $this->load->view('templates/footer');
@@ -50,9 +69,10 @@ class Articles extends CI_Controller
 
     public function create()
     {
-        $this->checkSession();
 
-        $this->load->view('articles/create');
+        $this->checkSession();
+        $data['tags'] = $this->tags;
+        $this->load->view('articles/create', $data);
         $this->load->view('templates/footer');
     }
 
@@ -75,6 +95,9 @@ class Articles extends CI_Controller
               "url" => $this->input->post('url')
             );
             $article_id = $this->article_model->insert($data, $_SESSION['user']['id']);
+
+            $tags = $this->input->post("tag");
+            $this->article_model->insert_tag($article_id, $tags);
             $this->session->set_flashdata('message', "建立文章成功");
             redirect(site_url('articles/'.$article_id), 'refresh');
             return true;
@@ -85,6 +108,12 @@ class Articles extends CI_Controller
     {
         $this->checkSession();
         $data['article'] = $this->article_model->get($id);
+        $data['tags'] = $this->tags;
+        $article_tags = $this->tag_model->get_tags($id);
+        $data['article_tag'] = [];
+        foreach ($article_tags as $tag) {
+            $data['article_tag'][] = $tag->tag_id;
+        }
         $this->checkArticleAuthor($data['article'], $_SESSION["user"]);
         $this->load->view('articles/edit', $data);
         $this->load->view('templates/footer');

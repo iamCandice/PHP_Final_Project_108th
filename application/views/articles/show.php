@@ -6,6 +6,12 @@
 		<div class="article-page-intro">
 			<div><p><?php echo $article['created_at']; ?></p></div>
 			<div><p><?php echo $author['name']; ?></p></div>
+			<div><p>
+				<?php foreach ($article_tag as $tag) {
+					echo "<label>" . $tags[$tag] . "</label>";
+				}
+				?>
+			</p></div>
 			<?php if (!empty($article['url'])): ?>
 			<a href="<?php echo $article['url']; ?>">ChatBot</a>
 		<?php endif; ?>
