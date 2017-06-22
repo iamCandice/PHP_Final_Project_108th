@@ -1,0 +1,22 @@
+.wrap{
+	margin-top: 100px;
+	margin-left: 30%;
+	margin-right: 30%;
+    font-size: 20pt;
+	width: 40%;
+	text-align: center;
+}
+
+.data{
+	margin-top: 20px;
+}
+
+.confirm input{
+	background-color: #ccc;
+	color: #fff;
+	border-radius: 4px;
+	padding: 10px 10px 10px 10px;
+	font-size: 17px;
+	margin-top: 25px;
+	float: right;
+}
