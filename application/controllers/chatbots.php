@@ -5,6 +5,8 @@ class Chatbots extends CI_Controller{
         parent::__construct();
         $this->load->model('article_model');
         $this->load->model('like_model');
+        $this->load->model('tag_model');
+        // $this->load->model('articletag_model');
     }
   public function index()
   {
@@ -17,7 +19,7 @@ class Chatbots extends CI_Controller{
     {
         $hots = [];
 
-        $likes = $this->like_model->hot_likes();/*key*/
+        $likes = $this->like_model->hot_likes();
         foreach ($likes as &$like) {
           $article = $this->article_model->get($like['article_id']);
           
@@ -31,30 +33,20 @@ class Chatbots extends CI_Controller{
         $this->load->view('chatbots/hot',$data);
         $this->load->view('templates/footer');
     }
-  public function tag()
+ public function tag()
   {
         $tags = [];
-
-        $likes = $this->like_model->tag_likes();
-        foreach ($likes as $like) {
-            $tags[] = $this->article_model->gettag($like['tag_id']);
+        $likes = $this->like_model->hot_tags();
+        foreach ($likes as &$like) {
+          $article_tag = $this->tag_model->gettag($like['tag_id']);
+          $like['name'] = $article_tag['name'];
         }
-
         $data = [
-            'tags' => $tags,
+          'likes' => $likes
         ];
         $this->load->view('templates/header');
         $this->load->view('chatbots/tag',$data);
         $this->load->view('templates/footer');  
-
-  }
-  public function article_tag()
-  {
-       
-        $this->load->view('templates/header');
-        $this->load->view('chatbots/article_tag');
-        $this->load->view('templates/footer');  
-
   }
 }
 

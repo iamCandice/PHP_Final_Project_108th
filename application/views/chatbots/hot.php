@@ -17,11 +17,11 @@
           title: 'Analyze data opening moves',
           width: 700,
           legend: { position: 'none' },
-          chart: { title: '統計分析表',},
+          chart: { title: '文章排行',},
           bars: 'horizontal', 
           axes: {
             x: {
-              0: { side: 'top', label: '每周人氣排行'} // Top x-axis.
+              0: { side: 'top', label: '以讚數計算'} // Top x-axis.
             }
           },          
           bar: { groupWidth: "90%" }

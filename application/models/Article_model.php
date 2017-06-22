@@ -41,9 +41,9 @@ class Article_model extends CI_Model
         $this->db->where('id', $id);
         $query = $this->db->get('articles');
         if ($query->num_rows() <= 0) {
-            return null; //無資料時回傳 null
+            return null;
         }
-        return $query->row_array();  //回傳第一筆
+        return $query->row_array();
     }
 
     public function gettag($id)
@@ -52,9 +52,9 @@ class Article_model extends CI_Model
         $query = $this->db->get('tags');
         
         if ($query->num_rows() <= 0) {
-            return null; //無資料時回傳 null
+            return null;
         }
-        return $query->row_array();  //回傳第一筆
+        return $query->row_array();
     }
 
     public function update($value, $id)

@@ -28,6 +28,7 @@
 	font-weight: 700;
 	padding: 40px 0;
 	text-align: center;
+	max-width: 120px;
 }
 
 .manage_wrap table tbody tr{
@@ -40,6 +41,7 @@
 	padding: 16px 0;
 	margin-right: 25px;
 	text-align: center;
+	max-width: 120px;
 }
 
 .manage_wrap table tbody tr td span{

@@ -4,14 +4,13 @@
     <thead>
       <tr>
         <th>標題</th>
-		<th>作者</th>
+		    <th>作者</th>
         <th>瀏覽次數</th>
         <th>建立時間</th>
-		<th>審核狀態</th>
-		<th>審核</th>
+    		<th>審核狀態</th>
+    		<th>審核</th>
         <th></th>
         <th></th>
-
       </tr>
     </thead>
     <tbody>

@@ -5,10 +5,10 @@
 		<div class="article-page-title"><?php echo $article['title']; ?></div>
 		<div class="article-page-intro">
 			<div><p><?php echo $article['created_at']; ?></p></div>
-			<div><p><?php echo $author['name']; ?></p></div>
+			<!-- <div><p><?php echo $author['name']; ?></p></div> -->
 			<div><p>
 				<?php foreach ($article_tag as $tag) {
-					echo "<label>" . $tags[$tag] . "</label>";
+					echo "<label>" . $tags[$tag] . "</label>" . "｜";
 				}
 				?>
 			</p></div>
@@ -38,16 +38,6 @@
 			<p><?php echo count($likes); ?></p>
 	</div>
   </div>
-
-	<!--related-article-->
- <!-- 	<div class="related-article-wrap">
-		<div class="related-article">相關文章</div>
-		<div class="related-article-content">
-			<a href=""><img src="http://localhost:8888/chatbot/img/test.jpg" alt=""></a>
-			<div class="related-article-title"><a href="">瑞豐夜市-州記魚行＆劍旗魚酥塊</a></div>
-			<div class="related-article-intro">2016/06/14</div>
-		</div>
-	</div>  -->
 
 	<!--comment-->
 	<div class="comment-wrap">

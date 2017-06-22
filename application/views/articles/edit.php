@@ -56,7 +56,7 @@
 			</div>
 			<div class="data">
 				<label for="upload-tag">標籤分類</label><br/>
-				<?php echo form_dropdown("tag[]", $tags, $article_tag, "multiple='multiple' class='tags'"); ?>
+				<span style="margin-top: 20px;"><?php echo form_dropdown("tag[]", $tags, $article_tag, "multiple='multiple' class='tags'"); ?></span>
 			</div>
 			<div class="data">
 				<label for="upload-intro">文章內容</label><br/>
