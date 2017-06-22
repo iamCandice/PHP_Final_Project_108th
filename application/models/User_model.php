@@ -6,8 +6,8 @@ class User_model extends CI_Model
         $this->db->select("*");
         $query = $this->db->get_where("users", array("email" => $email, "password" => $password ));
 
-        if ($query->num_rows() > 0) { //如果數量大於0
-            return $query->row();  //回傳第一筆
+        if ($query->num_rows() > 0) { 
+            return $query->row();
         } else {
             return null;
         }
@@ -18,6 +18,17 @@ class User_model extends CI_Model
          $query = $this->db->get('users');
          return $query->result_array();
      }
+
+     public function get($id)
+    {
+        $this->db->where('id', $id);
+        $query = $this->db->get('users');
+        if ($query->num_rows() <= 0) {
+            return null;
+        }
+        return $query->row_array();
+    }
+
 
     public function find_by_ids($user_ids)
     {
@@ -36,8 +47,8 @@ class User_model extends CI_Model
     {
         $this->db->where('id', $user_id);
         $query = $this->db->get('users');
-        if ($query->num_rows() > 0) { //如果數量大於0
-            return $query->row_array();  //回傳第一筆
+        if ($query->num_rows() > 0) { 
+            return $query->row_array();
         } else {
             return null;
         }

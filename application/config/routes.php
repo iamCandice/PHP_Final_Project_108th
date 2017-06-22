@@ -60,6 +60,7 @@ $route['articles'] = 'articles/index';
 $route['chatbots'] = 'chatbots/index';
 $route['chatbots/hot'] = 'chatbots/hot';
 $route['chatbots/tag'] = 'chatbots/tag';
+$route['chatbots/user_articles'] = 'chatbots/user_articles';
 $route['articles/(:num)'] = 'articles/show/$1';
 $route['articles/(:num)/edit'] = 'articles/edit/$1';
 $route['articles/(:num)/update'] = 'articles/update/$1';

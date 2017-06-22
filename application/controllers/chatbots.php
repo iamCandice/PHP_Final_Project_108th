@@ -6,7 +6,7 @@ class Chatbots extends CI_Controller{
         $this->load->model('article_model');
         $this->load->model('like_model');
         $this->load->model('tag_model');
-        // $this->load->model('articletag_model');
+        $this->load->model('user_model');
     }
   public function index()
   {
@@ -46,6 +46,22 @@ class Chatbots extends CI_Controller{
         ];
         $this->load->view('templates/header');
         $this->load->view('chatbots/tag',$data);
+        $this->load->view('templates/footer');  
+  }
+  public function user_articles()
+  {
+        $articles = [];
+        $likes = $this->like_model->user_article();
+        foreach ($likes as &$like) {
+          $user = $this->user_model->get($like['user_id']);
+          
+          $like['name'] = $user['name'];
+        }
+        $data = [
+          'likes' => $likes
+        ];
+        $this->load->view('templates/header');
+        $this->load->view('chatbots/user_articles',$data);
         $this->load->view('templates/footer');  
   }
 }

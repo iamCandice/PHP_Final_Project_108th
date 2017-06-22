@@ -55,22 +55,32 @@ class Like_model extends CI_Model
         return $query->result_array();
     }
 
-   public function hot_likes($num = 10)/*取10個*/
+   public function hot_likes($num = 10)
     {
         $this->db->select('article_id, count(*) as total')/*把article_id在like裡面出現的次數算出來*/                                 ->group_by('article_id')
-            ->order_by('total', 'DESC');/*算出來之後由多到少排出來*/
+            ->order_by('total', 'DESC');
         $query = $this->db->get('likes', $num);
         return $query->result_array();
     }
 
-   public function hot_tags($num = 10)/*取10個*/
+   public function hot_tags($num = 10)
     {
     $this->db->select('tag_id, count(*) as total')
             ->group_by('tag_id')
-            ->order_by('total', 'DESC');/*算出來之後由多到少排出來*/
+            ->order_by('total', 'DESC');
         $query = $this->db->get('article_tags', $num);
         return $query->result_array();
     }
+
+    public function user_article($num = 10)
+    {
+        $this->db->select('user_id, count(*) as total')
+            ->group_by('user_id')
+            ->order_by('total', 'DESC');
+        $query = $this->db->get('articles', $num);
+        return $query->result_array();
+    }
+    
     public function get_member_analysis() {
         return $this->db->query("SELECT date_format(created_at, '%y-%M') as month, count(*) as total FROM `users` GROUP by date_format(created_at, '%y-%M')")
             ->result_array();
